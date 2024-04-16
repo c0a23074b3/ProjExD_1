@@ -15,8 +15,7 @@ def main():
     tbg_img = pg.transform.flip(bg_img, True, False)#練習７
     kk_img_rct = kk_img.get_rect()#練習８-1こうかとんrectを抽出
     kk_img_rct.center = 300, 200#こうかとんrectの指定
-    
-
+    print(kk_img_rct)
     tmr = 0
     while True:
         for event in pg.event.get():
@@ -30,19 +29,21 @@ def main():
         if key_lst[pg.K_LEFT]:
             kk_img_rct.move_ip((-1,0))
         if key_lst[pg.K_RIGHT]:
-            kk_img_rct.move_ip((1,0))
-
+            kk_img_rct.move_ip((2,0))
+        else:
+            kk_img_rct.move_ip((-1,0))
         x = tmr%3200#練習６（背景画像繰り返すための処理）
         screen.blit(bg_img, [-x, 0])
         screen.blit(tbg_img,[(-x+1600),0])#練習７
         screen.blit(bg_img, [(-x+3200),0])
         screen.blit(tbg_img,[(-x+4800),0])
         screen.blit(kk_img, kk_img_rct)
+        
+
         #print(tmr,x)
         pg.display.update()
-        tmr += 1        
+        tmr += 1
         clock.tick(200)
-
 
 if __name__ == "__main__":
     pg.init()
