@@ -12,13 +12,18 @@ def main():
     bg_img = pg.image.load("fig/pg_bg.jpg")
     kk_img = pg.image.load("fig/3.png") #練習２
     kk_img = pg.transform.flip(kk_img, True, False)#練習２
+    tbg_img = pg.transform.flip(bg_img, True, False)#練習７
     tmr = 0
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
-        x = tmr%800#練習６（背景画像繰り返すための処理）
+        x = tmr%3200#練習６（背景画像繰り返すための処理）
         screen.blit(bg_img, [-x, 0])
+        screen.blit(tbg_img,[(-x+1600),0])#練習７
+        screen.blit(bg_img, [(-x+3200),0])
+        screen.blit(tbg_img,[(-x+4800),0])
         screen.blit(kk_img, [300, 200])#練習４
+        print(tmr,x)
         pg.display.update()
         tmr += 1        
         clock.tick(200)
