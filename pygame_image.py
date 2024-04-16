@@ -14,24 +14,34 @@ def main():
     kk_img = pg.transform.flip(kk_img, True, False)#練習２
     tbg_img = pg.transform.flip(bg_img, True, False)#練習７
     kk_img_rct = kk_img.get_rect()#練習８-1こうかとんrectを抽出
-    kk_img_rct.center = 300, 200#こうかとんrectの指定
+    kk_img_rct.center = (300, 200)#こうかとんrectの指定
     print(kk_img_rct)
     tmr = 0
     while True:
+        px = 0
+        py = 0
         for event in pg.event.get():
             if event.type == pg.QUIT: return
         key_lst = pg.key.get_pressed()
         #print(key_lst) 
         if key_lst[pg.K_UP]:
-            kk_img_rct.move_ip((0,-1))
+            py -=1
+            #kk_img_rct.move_ip((0,-1))
         if key_lst[pg.K_DOWN]:
-            kk_img_rct.move_ip((0,1))
+            py +=1
+            #kk_img_rct.move_ip((0,1))
         if key_lst[pg.K_LEFT]:
-            kk_img_rct.move_ip((-1,0))
+            px -=1
+            #kk_img_rct.move_ip((-1,0))
         if key_lst[pg.K_RIGHT]:
-            kk_img_rct.move_ip((2,0))
+            px +=1
+            #kk_img_rct.move_ip((2,0))
         else:
-            kk_img_rct.move_ip((-1,0))
+            px -=1
+            #kk_img_rct.move_ip((-1,0))
+        kk_img_rct.move_ip(px,py)
+        #print(px,py)
+        #print(kk_img_rct)
         x = tmr%3200#練習６（背景画像繰り返すための処理）
         screen.blit(bg_img, [-x, 0])
         screen.blit(tbg_img,[(-x+1600),0])#練習７
